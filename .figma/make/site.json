@@ -1,0 +1,10 @@
+{
+  "description": "Streamline your connection with KEVAL through a user-friendly platform for submitting contact details and processing secure payments with ease.",
+  "robots": {
+    "index": false
+  },
+  "accessibility": {
+    "addBypassLinks": false,
+    "ignoreReducedMotion": false
+  }
+}
