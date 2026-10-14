@@ -1,6 +1,9 @@
 # Git LFS Tracking Rules
 # Generated for binary, large, and non-diffable file types
 
+# Keep source and configuration files consistent across platforms.
+* text=auto eol=lf
+
 # ---------------------------------------------------------------------------
 # Images & Graphics
 # ---------------------------------------------------------------------------
