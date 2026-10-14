@@ -1,3 +1,4 @@
+import mongoose from "mongoose"
 import Razorpay from "razorpay"
 import { env } from "../config/env.js"
 import { Contact } from "../models/Contact.js"
@@ -43,8 +44,16 @@ async function confirmCapturedPayment(localPayment, paymentId) {
   if (!authoritative) return localPayment
 
   const paid = await Payment.findOneAndUpdate(
-    { _id: localPayment._id, status: { $ne: "paid" } },
-    { $set: { status: "paid", razorpayPaymentId: paymentId } },
+    {
+      _id: localPayment._id,
+      status: mongoose.trusted({ $ne: "paid" }),
+    },
+    {
+      $set: {
+        status: "paid",
+        razorpayPaymentId: paymentId,
+      },
+    },
     { new: true },
   ) || await Payment.findById(localPayment._id)
   await notifyPaymentOnce(paid)
