@@ -10,4 +10,14 @@ const schema = new mongoose.Schema({
   confirmationEmailSentAt: { type: Date, default: null },
 }, { timestamps: true })
 
+schema.index(
+  { razorpayPaymentId: 1 },
+  {
+    unique: true,
+    partialFilterExpression: {
+      razorpayPaymentId: { $type: "string" }
+    }
+  }
+)
+
 export const Payment = mongoose.model("Payment", schema)
